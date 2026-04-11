@@ -32,4 +32,5 @@ Valkey
 |이름|github|
 |------|---|
 |강대명|https://github.com/charsyam|
+|정지훈|https://github.com/Jih00nJung|
 
