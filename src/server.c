@@ -75,6 +75,7 @@
 #include <sys/utsname.h>
 #include <locale.h>
 #include <sys/socket.h>
+#include <strings.h>
 
 #ifdef __linux__
 #include <sys/mman.h>
@@ -4978,6 +4979,29 @@ void pingCommand(client *c) {
 void echoCommand(client *c) {
     addReplyBulk(c, c->argv[1]);
 }
+
+/* ossca assignment 4 */
+
+void echoJihoonCommand(client *c) {
+    robj *o = c->argv[1];
+    
+    robj *decoded = getDecodedObject(o);
+    char *payload = (char*)objectGetVal(decoded);
+
+    if (payload && strcasestr(payload, "jihoon") != NULL) {
+        sds response = sdsnew("hello! ");
+        response = sdscat(response, payload); 
+
+        addReplyBulkSds(c, response);
+    } else {
+        addReplyBulk(c, o);
+    }
+
+    decrRefCount(decoded);
+}
+
+
+
 
 void timeCommand(client *c) {
     addReplyArrayLen(c, 2);

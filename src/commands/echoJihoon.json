@@ -1,0 +1,29 @@
+{
+    "ECHOJIHOON": {
+        "summary": "Returns 'hello!' + string if it contains 'jihoon', otherwise returns the given string.",
+        "complexity": "O(N)",
+        "group": "connection",
+        "since": "1.0.0",
+        "arity": 2,
+        "function": "echoJihoonCommand",
+        "command_flags": [
+            "LOADING",
+            "STALE",
+            "FAST"
+        ],
+        "acl_categories": [
+            "CONNECTION",
+            "FAST"
+        ],
+        "reply_schema": {
+            "description": "The given string",
+            "type": "string"
+        },
+        "arguments": [
+            {
+                "name": "message",
+                "type": "string"
+            }
+        ]
+    }
+}
