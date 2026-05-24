@@ -4980,28 +4980,11 @@ void echoCommand(client *c) {
     addReplyBulk(c, c->argv[1]);
 }
 
-/* ossca assignment 4 */
-
+/* ossca assignment 5 */
 void echoJihoonCommand(client *c) {
-    robj *o = c->argv[1];
-    
-    robj *decoded = getDecodedObject(o);
-    char *payload = (char*)objectGetVal(decoded);
-
-    if (payload && strcasestr(payload, "jihoon") != NULL) {
-        sds response = sdsnew("hello! ");
-        response = sdscat(response, payload); 
-
-        addReplyBulkSds(c, response);
-    } else {
-        addReplyBulk(c, o);
-    }
-
-    decrRefCount(decoded);
+    sds resp = sdscatfmt(sdsempty(), "echo2_%S", (sds)objectGetVal(c->argv[1]));
+    addReplyBulkSds(c, resp);
 }
-
-
-
 
 void timeCommand(client *c) {
     addReplyArrayLen(c, 2);
@@ -7159,8 +7142,8 @@ void dismissMemoryInChild(void) {
     /* madvise(MADV_DONTNEED) may not work if Transparent Huge Pages is enabled. */
     if (server.thp_enabled) return;
 
-        /* Currently we use zmadvise_dontneed only when we use jemalloc with Linux.
-         * so we avoid these pointless loops when they're not going to do anything. */
+    /* Currently we use zmadvise_dontneed only when we use jemalloc with Linux.
+     * so we avoid these pointless loops when they're not going to do anything. */
 #if defined(USE_JEMALLOC) && defined(__linux__)
     listIter li;
     listNode *ln;

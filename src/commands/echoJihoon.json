@@ -1,6 +1,6 @@
 {
     "ECHOJIHOON": {
-        "summary": "Returns 'hello!' + string if it contains 'jihoon', otherwise returns the given string.",
+        "summary": "Returns 'echo2_' + string",
         "complexity": "O(N)",
         "group": "connection",
         "since": "1.0.0",
